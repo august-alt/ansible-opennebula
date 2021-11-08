@@ -1,0 +1,33 @@
+---
+
+name: samba-test-site
+domain: example.com
+nodes:
+  dc1:
+    name: site-test-01-z
+    count: 2
+    cpus: 1
+    cores: 4
+    mem: 4GB
+    template: server-9.2x64-for-testsite
+    net:
+      id: 27
+  dc2:
+    name: site-test-02-z
+    count: 2
+    cpus: 1
+    cores: 4
+    mem: 4GB
+    template: server-9.2x64-for-testsite
+    net:
+      id: 27
+  dc3:
+    name: site-test-03-z
+    count: 2
+    cpus: 1
+    cores: 4
+    mem: 4GB
+    template: server-9.2x64-for-testsite
+    net:
+      id: 27
+

@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: import config for stack
+      block:
+      - include_vars:
+          file: "stack.yml"
+          name: stack
+
+
+    - name: Deploy new instances and set memory, vcpu
+      community.general.one_vm:
+        api_password: '{{ password }}'
+        api_username: '{{ username }}'
+        api_url: '{{ server }}'
+        template_name: "{{ item.template }}"
+        memory: "{{ item.mem }}"
+        vcpu: "{{ item.cores }}"
+        count: "{{ item.count }}"
+        attributes:
+          name: "{{ item.name }}-dc-0#"
+      with_items: "{{ stack.nodes.values() | list }}"
+
+
